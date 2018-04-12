@@ -384,11 +384,11 @@ class TeamCity:
         """
         Trigger a new build
         """
-        url = _build_url('buildQueue', base_url=self.base_url)
+        url = _build_url('buildQueue', base_url=self.base_url) + "?rebuildDependencies=true"
         data = self._get_build_node(
             build_type_id, branch,
             comment, parameters, agent_id)
-
+        print "triggered_build", url
         response = self._post(
             url,
             headers={'Content-Type': 'application/xml'},
